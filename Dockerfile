@@ -1,11 +1,10 @@
-FROM centos:centos6
+FROM centos:centos6.9
 
 MAINTAINER Uwe Grawert
 
 ARG JAVA_VERSION=1.8.0
-ARG FIREFOX_VERSION=52.8.0-1.el6.centos
-
-RUN yum install --assumeyes firefox-$FIREFOX_VERSION \
+COPY CentOS-Base.repo /etc/yum.repos.d/
+RUN ulimit -n 1024000 && yum install --assumeyes firefox \
                             java-$JAVA_VERSION-openjdk \
                             libcanberra-gtk2 \
                             icedtea-web \
